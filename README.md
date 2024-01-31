@@ -10,7 +10,7 @@
 
 ### Commit Rule
 
-    ```
+    ```Python
     - Do not commit from/to the main branch
     - Branch name rule:
         - Development Dir/content
@@ -21,7 +21,7 @@
 
 ### How To Run
 
-    ```
+    ```Python
     Development Tools:      # Visual Studio Code
     Programming Language:   # Python3
     API:                    # Rest API, Dart API
