@@ -9,7 +9,6 @@
 ### Continuous Development
 
 ### Commit Rule
-
     ```Python
     - Do not commit from/to the main branch
     - Branch name rule:
@@ -20,7 +19,6 @@
     ```
 
 ### How To Run
-
     ```Python
     Development Tools:      # Visual Studio Code
     Programming Language:   # Python3
