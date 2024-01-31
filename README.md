@@ -10,4 +10,20 @@
 
 ### Commit Rule
 
+    ```
+    - Do not commit from/to the main branch
+    - Branch name rule:
+        - Development Dir/content
+    - Pull request wrtting rules:
+        - Title: What was developed
+        - Content: Brief description of the developed content
+    ```
+
 ### How To Run
+
+    ```
+    Development Tools:      # Visual Studio Code
+    Programming Language:   # Python3
+    API:                    # Rest API, Dart API
+    Database:               # Mysql, AWS RDS
+    ```
