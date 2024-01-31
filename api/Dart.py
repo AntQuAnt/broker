@@ -6,7 +6,6 @@ import zipfile
 import xmltodict
 import pandas as pd
 from io import BytesIO
-import pprint
 from dotenv import load_dotenv
 
 load_dotenv(os.path.join(os.getcwd(), '.env'))
@@ -65,12 +64,12 @@ class Dart():
 
         Parameters
         ----------
-            code: str
+            code: str, list
                 corporate code of desired company (note. it's not stock code)
-                use "," if you want multiple corporates (e.g. "00000000,00000001,00000002")
-            year: str 
+                use "," or list if you want multiple corporates (e.g. "00000000,00000001,00000002")
+            year: str, list
                 business year of balance sheet
-                use "~" if you want multiple years (e.g. '2015~2020')
+                use "~" or list if you want multiple years (e.g. '2015~2020')
             rprt_code: {'11013', '11012', '11014', '11011'}, default: '11011'
                 report type code (11013: 1Q, 11012: 2Q, 11014: 3Q, 11011:4Q)
 
@@ -80,16 +79,21 @@ class Dart():
                 DataFrame which contains financial statements data 
         '''
         # corporate code list
-        code_list = str(code).strip().split(',')
+        if isinstance(code, str):
+            code_list = str(code).strip().split(',')
+            code_list = [code.strip() for code in code_list]
+        
+        else:
+            code_list = code
         
         # year list 
-        if '~' in year:
+        if isinstance(year, str):
             start_year, end_year = str(year).strip().split('~')
             year_list = range(int(start_year), int(end_year) + 1)
             year_list = list(map(str, year_list))
 
         else: 
-            year_list = [year]
+            year_list = year
 
         # url
         url = os.path.join(self.base_url, 'fnlttSinglAcnt.json')        
@@ -106,6 +110,7 @@ class Dart():
         bs_df = pd.DataFrame(None)
         for tmp_code in code_list: 
             
+            # get corporate name, stock code
             is_corp = self.code['corp_code'] == tmp_code
             corp_name = self.code[is_corp].corp_name.values[0]
             corp_stock_code = self.code[is_corp].stock_code.values[0]
@@ -119,7 +124,7 @@ class Dart():
 
                 # request error
                 if not res.ok: 
-                    print('Failed to get corporate code.')
+                    print('Failed to get balance sheet.')
                     print(f'HTTP status code: {res.status_code}')
                 
                 else: 
@@ -167,9 +172,15 @@ print()
 print('=' * 30)
 print('balance sheet')
 print('=' * 30)
-code = '00126380,00401731,00164742,00164779'     # 삼성전자, LG전자, 현대차, SK하이닉스
-year = '2015~2023'                               # 2015년부터 2023년까지
-df = test.get_balance_sheet(code, year, rprt_code='11011')
+# 삼성전자, LG전자, 현대차, SK하이닉스
+code1 = '00126380,00401731,00164742,00164779'
+code2 = '00126380, 00401731, 00164742, 00164779'   
+code3 = ['00126380', '00401731', '00164742', '00164779']
+# 2015년부터 2023년까지
+year1 = '2015~2023'                               
+year2 = '2015 ~ 2023'
+year3 = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
+df = test.get_balance_sheet(code3, year3, rprt_code='11011')
 print(df)
 
 
