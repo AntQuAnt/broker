@@ -22,6 +22,6 @@
 ```Python
     Development Tools:      # Visual Studio Code
     Programming Language:   # Python3
-    API:                    # Rest API, Dart API
-    Database:               # Mysql, AWS RDS
-```
+    API:                    # KIS API, Dart API
+    Database:               # AWS RDS (MySql)
+    ```
