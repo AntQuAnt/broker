@@ -9,19 +9,19 @@
 ### Continuous Development
 
 ### Commit Rule
-    ```Python
+```Python
     - Do not commit from/to the main branch
     - Branch name rule:
         - Development Dir/content
     - Pull request wrtting rules:
         - Title: What was developed
         - Content: Brief description of the developed content
-    ```
+```
 
 ### How To Run
-    ```Python
+```Python
     Development Tools:      # Visual Studio Code
     Programming Language:   # Python3
     API:                    # Rest API, Dart API
     Database:               # Mysql, AWS RDS
-    ```
+```
