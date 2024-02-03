@@ -7,7 +7,6 @@ import pymysql
 load_dotenv(os.path.join(os.getcwd(), '.env'))
 
 # Database
-# db = os.environ['DB_name'],
 con = pymysql.connect(
     user = os.environ['DB_user'],
     passwd = os.environ['DB_passwd'],
